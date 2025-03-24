@@ -1,5 +1,8 @@
 FROM thecodingmachine/php:7.4-v4-apache
 
+# Instala Node.js y npm
+RUN apt-get update && apt-get install -y nodejs npm
+
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
 
