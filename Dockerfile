@@ -6,14 +6,17 @@ USER root
 # Instala Node.js y npm
 RUN apt-get update && apt-get install -y nodejs npm
 
-# Vuelve al usuario original
-USER www-data
-
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
 
 # Copia los archivos del proyecto
 COPY . .
+
+# Cambia los permisos para el directorio de trabajo
+RUN chown -R www-data:www-data /var/www/html
+
+# Vuelve al usuario original
+USER www-data
 
 # Instala las dependencias de PHP
 RUN composer install --no-dev --optimize-autoloader
