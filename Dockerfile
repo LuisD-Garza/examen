@@ -1,7 +1,13 @@
 FROM thecodingmachine/php:7.4-v4-apache
 
+# Cambia al usuario root para instalar paquetes
+USER root
+
 # Instala Node.js y npm
 RUN apt-get update && apt-get install -y nodejs npm
+
+# Vuelve al usuario original
+USER www-data
 
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
