@@ -15,17 +15,17 @@ COPY . .
 # Cambia los permisos para el directorio de trabajo
 RUN chown -R www-data:www-data /var/www/html
 
-# Vuelve al usuario original
-USER www-data
-
-# Instala las dependencias de PHP
+# Instala las dependencias de PHP como root
 RUN composer install --no-dev --optimize-autoloader
 
-# Instala dependencias de Node.js para React
+# Instala dependencias de Node.js para React como root
 RUN npm install && npm run build
 
 # Configura los permisos para Laravel
 RUN chmod -R 777 storage bootstrap/cache
+
+# Vuelve al usuario original
+USER www-data
 
 # Expone el puerto 80
 EXPOSE 80
