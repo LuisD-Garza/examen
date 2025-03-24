@@ -1,5 +1,4 @@
 FROM thecodingmachine/php:7.4-v4-apache
-USER root
 RUN apt-get update && apt-get install -y curl gnupg2 \
     && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs gcc g++ make \
@@ -12,6 +11,5 @@ RUN chown -R www-data:www-data /var/www/html
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 RUN chmod -R 777 storage bootstrap/cache
-USER www-data
 EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
