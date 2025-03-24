@@ -21,7 +21,7 @@ RUN chown -R www-data:www-data /var/www/html
 RUN composer install --no-dev --optimize-autoloader
 
 # Instala dependencias de Node.js para React como root
-RUN npm install
+RUN npm install && npm run build
 
 # Configura los permisos para Laravel
 RUN chmod -R 777 storage bootstrap/cache
