@@ -5,8 +5,6 @@ import Login from './components/Login';
 import UserDashboard from './components/UserDashboard';
 import ProductosList from './components/ProductosList';
 import Register from './components/Register';
-import ProductoForm from './components/ProductoForm';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 if (document.getElementById('admin-login')) {
   ReactDOM.render(<AdminLogin />, document.getElementById('admin-login'));

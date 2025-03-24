@@ -48,6 +48,7 @@ class ProductoController extends Controller
             'precio' => $request->precio,
             'descripcion' => $request->descripcion,
             'categoria_id' => $request->categoria_id,
+            'img' => $imgPath,
         ]);
     
         return response()->json([
@@ -60,13 +61,14 @@ class ProductoController extends Controller
     // Actualizar un producto existente
     public function update(Request $request, Producto $producto)
     {
+        dd($request->all(), $request->hasFile('img'));
         $request->validate([
             'nombre' => 'required|string|max:255',
             'precio' => 'required|numeric',
             'descripcion' => 'nullable|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validar imagen
             'categoria_id' => 'required|exists:categorias,id',
         ]);
+       
     
         // Actualizar la imagen si se proporciona
         if ($request->hasFile('img')) {
