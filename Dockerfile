@@ -1,5 +1,4 @@
-# Usa la imagen oficial de Laravel con PHP 8 y Nginx
-FROM thecodingmachine/php:8.2-v4-apache
+FROM thecodingmachine/php:7.4-v4-apache
 
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
