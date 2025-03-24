@@ -4,7 +4,9 @@ FROM thecodingmachine/php:7.4-v4-apache
 USER root
 
 # Instala Node.js y npm
-RUN apt-get update && apt-get install -y nodejs npm
+RUN apt-get update && apt-get install -y curl \
+    && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs
 
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
@@ -19,7 +21,7 @@ RUN chown -R www-data:www-data /var/www/html
 RUN composer install --no-dev --optimize-autoloader
 
 # Instala dependencias de Node.js para React como root
-RUN npm install && npm run build
+RUN npm install
 
 # Configura los permisos para Laravel
 RUN chmod -R 777 storage bootstrap/cache
