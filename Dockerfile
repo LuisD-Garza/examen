@@ -13,9 +13,8 @@ RUN chown -R www-data:www-data /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
-USER www-data
 
 RUN chmod -R 777 storage bootstrap/cache
 EXPOSE 80
-
+USER www-data
 CMD ["apachectl", "-D", "FOREGROUND"]
